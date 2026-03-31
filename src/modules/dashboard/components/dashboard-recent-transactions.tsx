@@ -61,7 +61,7 @@ export function DashboardRecentTransactions({ transactions, isLoading = false }:
               <Box
                 as="li"
                 key={transaction.id}
-                className="rounded-2xl border border-white/10 bg-white/[0.02] p-4 light:border-black/10 light:bg-black/[0.02]"
+                className="rounded-2xl border border-white/10 bg-white/2 p-4 light:border-black/10 light:bg-black/2"
               >
                 <Stack
                   gap="4"

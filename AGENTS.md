@@ -39,9 +39,11 @@ Current stack:
 - Do not move feature-specific code into `src/shared`.
 - Prefer extending an existing module in `src/modules` before creating a new shared abstraction.
 - Keep responsibilities split by concern: component, hook, service, schema, store, types, utils.
+- Keep each artifact in its own file of responsibility: types in `types/`, constants in `constants/`, pure helper functions and guards in `utils/`, external access in `services/`, and UI composition in `components/`.
 - Encapsulate API and external access inside `services/`.
 - Use React Hook Form + Zod for forms.
 - Keep components small and presentation-focused.
+- Avoid declaring feature `types`, constant catalogs, guards, formatters, and calculation helpers inside component files when they belong to the module structure.
 - Use Redux Toolkit only when state is truly global, shared across distant areas, or persisted in a way that local state or module-scoped solutions cannot handle cleanly. Do not introduce Redux by default.
 - Respect module boundaries; avoid reaching into another module's deep internal files when a public entrypoint is more appropriate.
 - Avoid `any` unless there is a strong justification.
@@ -60,6 +62,7 @@ Typical module structure:
 ```txt
 src/modules/<feature>/
   components/
+  constants/
   hooks/
   services/
   schemas/
@@ -77,6 +80,7 @@ src/modules/<feature>/
 - Hooks: `use-*.ts` or team-consistent hook naming
 - Schemas: `*.schema.ts`
 - Services: `*.service.ts`
+- Constants: `*.constants.ts`
 - Store slices: `*.slice.ts`
 - Selectors: `*.selectors.ts`
 - Types: `*.types.ts`

@@ -150,6 +150,8 @@ modules/
     components/
       login-form.tsx
       login-card.tsx
+    constants/
+      auth.constants.ts
     hooks/
       use-login-form.ts
     services/
@@ -171,12 +173,13 @@ modules/
 ### Regras importantes
 
 - `components/`: componentes visuais da feature
+- `constants/`: catálogos, defaults, labels e configurações estáveis da feature
 - `hooks/`: orquestracao, estado local, integracao com formularios, regras de interacao
 - `services/`: comunicacao externa e regras de acesso a dados
 - `schemas/`: validacoes com Zod
 - `store/`: estado global da feature, quando realmente necessario
 - `types/`: tipos especificos da feature
-- `utils/`: helpers internos da feature
+- `utils/`: helpers puros da feature, como calculos, guards, formatadores e mapeamentos
 - `tests/`: testes da feature quando fizer sentido centralizar
 - `index.ts`: exportacoes publicas do modulo
 
@@ -215,6 +218,7 @@ Esses exemplos acima devem viver no modulo correspondente.
 | Hooks                  | `kebab-case.ts` ou `camelCase` interno padronizado por equipe | `use-login-form.ts` |
 | Schemas                | `kebab-case.ts`  | `login.schema.ts`          |
 | Services               | `kebab-case.ts`  | `auth.service.ts`          |
+| Constants              | `kebab-case.ts`  | `auth.constants.ts`        |
 | Store slices           | `kebab-case.ts`  | `auth.slice.ts`            |
 | Selectors              | `kebab-case.ts`  | `auth.selectors.ts`        |
 | Tipos                  | `kebab-case.ts`  | `auth.types.ts`            |
@@ -228,9 +232,19 @@ Esses exemplos acima devem viver no modulo correspondente.
 
 - Componentes devem ser pequenos, previsiveis e focados em apresentacao
 - Nao coloque regra de negocio complexa diretamente no JSX
+- Nao concentre `types`, `constants`, `guards`, `formatadores` ou funcoes utilitarias dentro de arquivos de componente quando esses itens pertencem ao modulo
 - Componentes de feature ficam no modulo da feature
 - Componentes genericos ficam em `shared/components`
 - Priorize composicao sobre componentes gigantes e multifuncionais
+
+### Regra pratica de organizacao
+
+- `components/` deve conter prioritariamente o componente e, no maximo, logica visual muito local
+- `types/` deve centralizar os tipos do modulo, inclusive props compartilhadas entre componentes e hooks
+- `constants/` deve centralizar defaults, listas fixas, labels e configuracoes estaveis
+- `utils/` deve centralizar funcoes puras, calculos, guards e formatadores
+- `services/` deve centralizar acesso externo e orquestracao de dados
+- Se um arquivo de componente comecar a acumular helpers, constantes ou tipos locais relevantes, extraia para a pasta correspondente do modulo
 
 ### Separacao recomendada
 

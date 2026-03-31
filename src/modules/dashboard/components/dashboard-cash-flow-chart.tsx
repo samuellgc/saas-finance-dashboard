@@ -103,7 +103,7 @@ export function DashboardCashFlowChart({ points, periodLabel, isLoading = false 
               key={point.label}
               className="w-28 shrink-0"
             >
-              <Box className="flex h-56 items-end justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.03] p-4 light:border-black/10 light:bg-black/[0.03]">
+              <Box className="flex h-56 items-end justify-center gap-2 rounded-2xl border border-white/10 bg-white/3 p-4 light:border-black/10 light:bg-black/3">
                 <Box className="flex h-full w-8 items-end rounded-full bg-primary/15">
                   <Box
                     className="w-full rounded-full bg-primary"
