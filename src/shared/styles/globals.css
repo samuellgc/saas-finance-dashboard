@@ -83,34 +83,51 @@
 }
 
 .light {
-  --background: oklch(0.9702 0 0);
-  --foreground: oklch(0.5624 0 0);
-  --card: oklch(0.21 0.034 264.665);
-  --card-foreground: oklch(0.5624 0 0);
-  --popover: oklch(0.21 0.034 264.665);
-  --popover-foreground: oklch(0.5624 0 0);
+  --background-secondary: oklch(0.9551 0.0047 236.5);
+  --background: oklch(0.9829 0.0029 247.84);
+  --foreground: oklch(0.2784 0.01 248.19);
+  --card: oklch(0.998 0.001 247.84 / 92%);
+  --card-foreground: oklch(0.2784 0.01 248.19);
+  --popover: oklch(0.998 0.001 247.84 / 96%);
+  --popover-foreground: oklch(0.2784 0.01 248.19);
   --primary: oklch(0.5876 0.0659 161.24);
   --primary-hover: oklch(0.6762 0.0747 164.24);
-  --primary-foreground: oklch(0.21 0.034 264.665);
-  --secondary: oklch(0.278 0.033 256.848);
-  --secondary-foreground: oklch(0.5624 0 0);
-  --muted: oklch(0.278 0.033 256.848);
-  --muted-foreground: oklch(0.707 0.022 261.325);
-  --accent: oklch(0.278 0.033 256.848);
-  --accent-foreground: oklch(0.5624 0 0);
+  --primary-foreground: oklch(0.985 0.002 247.839);
+  --secondary: oklch(0.9412 0.0067 247.89);
+  --secondary-foreground: oklch(0.2784 0.01 248.19);
+  --muted: oklch(0.9551 0.0047 236.5);
+  --muted-foreground: oklch(0.4923 0.0105 248.18);
+  --accent: oklch(0.9475 0.0075 247.89);
+  --accent-foreground: oklch(0.2784 0.01 248.19);
   --destructive: oklch(0.704 0.191 22.216);
   --success: oklch(0.7663 0.0958 169.38);
   --warning: oklch(0.7954 0.171 84.17);
   --error: oklch(0.7321 0.1649 20.66);
-  --gray-0: oklch(0.2134 0 0);
-  --gray-2: oklch(0.2393 0 0);
-  --gray-3: oklch(0.2809 0 0);
-  --gray-4: oklch(0.3562 0 0);
-  --gray-5: oklch(0.6993 0 0);
-  --gray-6: oklch(0.7984 0 0);
-  --gray-7: oklch(0.9067 0 0);
+  --gray-0: oklch(0.9961 0.0011 247.86);
+  --gray-2: oklch(0.9771 0.0024 247.84);
+  --gray-3: oklch(0.9344 0.0048 247.88);
+  --gray-4: oklch(0.875 0.0075 247.95);
+  --gray-5: oklch(0.5584 0.0124 248.09);
+  --gray-6: oklch(0.3925 0.0118 248.15);
+  --gray-7: oklch(0.2485 0.0107 248.23);
   --green-5: oklch(0.6762 0.0747 164.24);
   --green-7: oklch(0.5876 0.0659 161.24);
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+
+  html.light {
+    color-scheme: light;
+  }
+
+  body {
+    min-height: 100vh;
+    background: var(--background);
+    color: var(--foreground);
+  }
 }
 
 @layer utilities {

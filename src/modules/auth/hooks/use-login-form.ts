@@ -54,7 +54,7 @@ export function useLoginForm() {
 
       if (result.data) {
         dispatch(setUser(result.data));
-        router.push("/dashboard");
+        router.push("/painel");
       }
     } catch (error) {
       toastError(getErrorMessage(error));

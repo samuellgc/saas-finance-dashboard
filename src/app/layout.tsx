@@ -3,6 +3,7 @@ import "@/shared/styles/globals.css";
 import { Urbanist } from "next/font/google";
 import { ReduxProvider } from "@/shared/providers/redux-provider";
 import { ToastContainer } from "react-toastify";
+import { themeInitializationScript } from "@/shared/lib/theme";
 
 const urbanist = Urbanist({
   subsets: ["latin"],
@@ -24,8 +25,11 @@ export default function RootLayout({
     <html
       lang="pt-BR"
       className={urbanist.className}
+      suppressHydrationWarning
     >
-      <body className="data-scroll-locked:overflow-visible! data-scroll-locked:mr-0!">
+      <body className="min-h-screen bg-background text-foreground antialiased data-scroll-locked:overflow-visible! data-scroll-locked:mr-0!">
+        {/* biome-ignore lint/security/noDangerouslySetInnerHtml: static inline script to apply the saved theme before hydration */}
+        <script dangerouslySetInnerHTML={{ __html: themeInitializationScript }} />
         <ReduxProvider>
           {children}
           <ToastContainer />

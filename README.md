@@ -18,11 +18,18 @@ Frontend em **Next.js 15** com **React 19**, organizado por modulo e preparado p
 
 O projeto segue a regra:
 
-- `src/app`: rotas, layouts e composicao de entrada
-- `src/modules`: regra de negocio por dominio
-- `src/shared`: infraestrutura e recursos reutilizaveis
+- `src/app`: rotas, layouts e composicao de entrada (sem regra de negocio nova)
+- `src/modules`: regra de negocio por dominio/feature
+- `src/shared`: infraestrutura transversal e recursos realmente reutilizaveis
 
-Estrutura atual:
+Regras arquiteturais obrigatorias:
+
+- nao adicionar regra de negocio diretamente em `src/app`
+- nao mover codigo especifico de feature para `src/shared`
+- preferir estender modulos existentes em `src/modules` antes de criar novas abstracoes compartilhadas
+- segmentos de rota voltados ao usuario devem ser nomeados em portugues por padrao
+
+Estrutura de referencia:
 
 ```txt
 src/
@@ -30,8 +37,20 @@ src/
     (auth)/
       login/
         page.tsx
+    (app)/
+      layout.tsx
+      painel/
+        page.tsx
+      fluxo-de-caixa/
+        page.tsx
+      lancamentos/
+        page.tsx
+      categorias/
+        page.tsx
+      contatos/
+        page.tsx
     dashboard/
-      page.tsx
+      page.tsx # compatibilidade de rota legada
     layout.tsx
     page.tsx
 
@@ -48,10 +67,23 @@ src/
     dashboard/
       components/
       index.ts
+    cash-flow/
+      components/
+      index.ts
+    transactions/
+      components/
+      index.ts
+    categories/
+      components/
+      index.ts
+    contacts/
+      components/
+      index.ts
 
   shared/
     components/
       shadcn/
+      layout/
       ui/
     hooks/
     lib/
@@ -123,7 +155,11 @@ pnpm dev
 3. Acesse:
 
 - `http://localhost:3000/login`
-- `http://localhost:3000/dashboard`
+- `http://localhost:3000/painel`
+
+Observacao:
+
+- `http://localhost:3000/dashboard` existe apenas como compatibilidade temporaria e redireciona para `/painel`
 
 ### Com Docker
 
@@ -159,6 +195,7 @@ Hooks configurados:
 
 ## Documentacao Util
 
+- `AGENTS.md`: regras operacionais e nao-negociaveis para contribuicoes
 - `docs/frontend-guidelines.md`: padroes de arquitetura e checklist de PR
 - `biome.json`: configuracao de lint e formatacao
 - `vitest.config.mts`: configuracao de testes
@@ -171,5 +208,7 @@ Hoje o projeto ja inclui:
 - fluxo de login modularizado em `src/modules/auth`
 - store global desacoplada em `src/shared/store`
 - provider Redux em `src/shared/providers`
-- pagina inicial de dashboard em `src/modules/dashboard`
+- shell autenticado global em `src/app/(app)` com sidebar, header e area principal
+- rotas autenticadas em portugues (`/painel`, `/fluxo-de-caixa`, `/lancamentos`, `/categorias`, `/contatos`)
+- pagina inicial de painel em `src/modules/dashboard`
 - tema centralizado por tokens em `src/shared/styles/globals.css`
