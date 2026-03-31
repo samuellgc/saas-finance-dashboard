@@ -206,8 +206,8 @@ function DataTableComponent<T>({
               variant="ghost"
               aria-label="Página anterior"
               className={cn(
-                "!bg-transparent size-fit hover:cursor-pointer !text-gray-7",
-                pagination.currentPage <= 1 && "!text-gray-5"
+                "bg-transparent! size-fit hover:cursor-pointer text-gray-7!",
+                pagination.currentPage <= 1 && "text-gray-5!"
               )}
               onClick={() => onPageChange?.(pagination.currentPage - 1)}
               disabled={pagination.currentPage <= 1}
@@ -218,8 +218,8 @@ function DataTableComponent<T>({
               variant="ghost"
               aria-label="Próxima página"
               className={cn(
-                "!bg-transparent size-fit hover:cursor-pointer !text-gray-7",
-                pagination.currentPage >= pagination.totalPages && "!text-gray-5"
+                "bg-transparent! size-fit hover:cursor-pointer text-gray-7!",
+                pagination.currentPage >= pagination.totalPages && "text-gray-5!"
               )}
               onClick={() => onPageChange?.(pagination.currentPage + 1)}
               disabled={pagination.currentPage >= pagination.totalPages}

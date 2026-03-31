@@ -25,7 +25,7 @@ export default function RootLayout({
       lang="pt-BR"
       className={urbanist.className}
     >
-      <body className="data-[scroll-locked]:!overflow-visible data-[scroll-locked]:!mr-0">
+      <body className="data-scroll-locked:overflow-visible! data-scroll-locked:mr-0!">
         <ReduxProvider>
           {children}
           <ToastContainer />
