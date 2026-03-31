@@ -1,6 +1,6 @@
 {
-  "name": "boilerplate-frontend",
-  "description": "boilerplate Frontend",
+  "name": "saas-finance-dashboard",
+  "description": "Painel financeiro para gestão, análise e acompanhamento de operações SaaS.",
   "version": "0.1.0",
   "private": true,
   "scripts": {

@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Stack } from "@/shared/components/ui/stack";
 
 export const metadata: Metadata = {
-  title: "Login - Boilerplate padrão",
-  description: "Boilerplate padrão para projetos front-end",
+  title: "Login | SaaS Finance Dashboard",
+  description: "Acesso ao SaaS Finance Dashboard.",
 };
 
 export default function AuthLayout({

@@ -11,8 +11,8 @@ const urbanist = Urbanist({
 });
 
 export const metadata: Metadata = {
-  title: "Boilerplate padrão",
-  description: "Boilerplate padrão para projetos front-end",
+  title: "SaaS Finance Dashboard",
+  description: "Frontend do SaaS Finance Dashboard.",
 };
 
 export default function RootLayout({

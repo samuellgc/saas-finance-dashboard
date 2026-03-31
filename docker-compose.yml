@@ -1,8 +1,8 @@
 version: '3.9'
 
 services:
-  boilerplate-frontend:
-    container_name: boilerplate-frontend
+  saas-finance-dashboard-client:
+    container_name: saas-finance-dashboard-client
     build:
       context: .
       dockerfile: Dockerfile

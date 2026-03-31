@@ -140,9 +140,9 @@ docker-compose up --build
 3. Comandos uteis no container:
 
 ```bash
-docker-compose exec boilerplate-frontend pnpm lint
-docker-compose exec boilerplate-frontend pnpm test
-docker-compose exec boilerplate-frontend pnpm build
+docker-compose exec saas-finance-dashboard-client pnpm lint
+docker-compose exec saas-finance-dashboard-client pnpm test
+docker-compose exec saas-finance-dashboard-client pnpm build
 ```
 
 ## Fluxo de Qualidade
