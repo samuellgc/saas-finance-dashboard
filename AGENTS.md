@@ -98,6 +98,8 @@ Do not create new business modules unless the task explicitly requires it.
 
 - Use Tailwind CSS as the main styling layer.
 - Prefer shadcn/ui and Radix primitives for accessible UI.
+- Reuse existing project components before creating new markup with raw HTML elements.
+- Avoid building UI with pure elements (`div`, `button`, `input`, etc.) when there is already a specific component in the codebase for that purpose.
 - Use conditional class helpers already adopted by the project, such as `clsx` or `cn`.
 - Keep spacing and layout patterns consistent with nearby code.
 - Preserve keyboard interaction and accessibility guarantees.

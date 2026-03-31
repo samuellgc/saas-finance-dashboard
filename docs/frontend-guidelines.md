@@ -329,6 +329,8 @@ Padrao oficial:
 
 - Tailwind CSS e a camada principal de estilo
 - shadcn/ui e Radix devem ser a base dos componentes acessiveis
+- componentes existentes do projeto devem ser reutilizados antes de criar novos
+- evite construir interface com elementos puros (`div`, `button`, `input`, etc.) quando ja existir componente especifico para o mesmo objetivo
 - use `cn`/`clsx` para classes condicionais
 - evite listas gigantes de classes sem extracao
 - padroes de layout e espacamento devem ser consistentes
@@ -428,6 +430,7 @@ Ao criar qualquer nova feature, siga obrigatoriamente:
 9. **Respeitar a fronteira entre infraestrutura compartilhada e regra de negocio**
 10. **Nao transformar `shared` em deposito generico**
 11. **Nomear rotas publicas em portugues, salvo excecoes consolidadas no produto como `login` e `dashboard`**
+12. **Reutilizar componentes existentes do projeto antes de usar elementos puros de HTML**
 
 ---
 

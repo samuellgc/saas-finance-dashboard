@@ -43,7 +43,7 @@ export function AppSidebar({
 
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 z-50 flex w-[18.5rem] flex-col border-r border-white/10 bg-[rgba(11,14,16,0.94)] px-3 py-4 text-gray-7 shadow-2xl transition-transform duration-300 md:sticky md:top-0 md:h-screen md:translate-x-0 md:shadow-none light:border-black/10 light:bg-[rgba(255,255,255,0.94)]",
+          "fixed inset-y-0 left-0 z-50 flex w-74 flex-col border-r border-white/10 bg-[rgba(11,14,16,0.94)] px-3 py-4 text-gray-7 shadow-2xl transition-transform duration-300 md:sticky md:top-0 md:h-screen md:translate-x-0 md:shadow-none light:border-black/10 light:bg-[rgba(255,255,255,0.94)]",
           mobileOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
