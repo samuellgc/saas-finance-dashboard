@@ -99,6 +99,13 @@ Regras:
 - `app` nao deve concentrar regra de negocio complexa
 - `page.tsx` deve orquestrar a tela, consumindo componentes e recursos dos modulos
 - layouts e providers globais podem ficar em `app` ou em `shared`, dependendo do escopo
+- segmentos de rota voltados ao usuario devem ser nomeados em portugues por padrao
+- excecoes sao permitidas para termos amplamente incorporados no produto, como `login` e `dashboard`
+
+Exemplos:
+- `/produtos` em vez de `/products`
+- `/usuarios` em vez de `/users`
+- `/clientes` em vez de `/customers`
 
 ### `src/modules`
 Responsavel por **dominios/funcionalidades da aplicacao**.
@@ -420,6 +427,7 @@ Ao criar qualquer nova feature, siga obrigatoriamente:
 8. **Criar nomes consistentes e previsiveis**
 9. **Respeitar a fronteira entre infraestrutura compartilhada e regra de negocio**
 10. **Nao transformar `shared` em deposito generico**
+11. **Nomear rotas publicas em portugues, salvo excecoes consolidadas no produto como `login` e `dashboard`**
 
 ---
 
