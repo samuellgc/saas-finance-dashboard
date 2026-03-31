@@ -8,3 +8,5 @@ dist/
 coverage/
 out/
 tmp/
+reviews/
+handoffs/

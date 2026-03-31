@@ -127,6 +127,18 @@ Validation expectations:
 - Do not rewrite unrelated files.
 - If a rule here conflicts with a more specific `AGENTS.md` deeper in the tree, the deeper file wins for that scope.
 
+## AI Handoffs And Reviews
+
+- Use `handoffs/` for implementation notes meant to transfer context between AI runs.
+- Use `reviews/` for review outputs, findings, requested changes, and approval notes.
+- Name files with a migration-like timestamp prefix: `YYYYMMDD-HHMMSS-slug.md`.
+- Example handoff: `handoffs/20260331-130305-layout-autenticado-global.md`
+- Example review: `reviews/20260331-131500-layout-autenticado-global.md`
+- Expected workflow: implementation handoff -> review -> correction handoff if needed -> review approval -> human validation -> production.
+- Do not overwrite old handoffs or reviews when a correction happens; create a new timestamped file.
+- Use review statuses such as `changes-requested` and `approved`.
+- Keep these files short, task-specific, and disposable. The tracked source of truth should still live in `docs/` when the content is long-term documentation.
+
 ## Source of Truth
 
 This file is intentionally short. The canonical architecture guidance lives in:
