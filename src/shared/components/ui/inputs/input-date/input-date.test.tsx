@@ -1,10 +1,18 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { InputDate } from "./";
-import { describe, it, expect } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { useState } from "react";
 
 describe("InputDate Component", () => {
+  beforeEach(() => {
+    vi.useRealTimers();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
   it("should render the input with a label", () => {
     render(
       <InputDate
@@ -27,8 +35,10 @@ describe("InputDate Component", () => {
   });
 
   it("should display the selected date in the correct format", async () => {
-    // Fixa o "agora" em 2025-09-01
+    vi.useFakeTimers();
     vi.setSystemTime(new Date(2025, 8, 1, 0, 0, 0));
+    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
+
     const ControlledInput = () => {
       const [value, setValue] = useState<Date | undefined>(undefined);
       return (
@@ -44,18 +54,18 @@ describe("InputDate Component", () => {
     render(<ControlledInput />);
     const button = screen.getByRole("button", { name: /DD\/MM\/AAAA/i });
 
-    // Simulate opening the calendar and selecting a date
-    await userEvent.click(button);
-    const day = screen.getByText("15"); // Assuming "15" is a valid day in the calendar
-    await userEvent.click(day);
+    await user.click(button);
+    const day = await screen.findByRole("button", { name: "15" });
+    await user.click(day);
 
     expect(button).toHaveTextContent("15/09/2025");
-
-    vi.useRealTimers(); // volta ao normal
   });
 
   it("should call onChange when a date is selected", async () => {
+    vi.useFakeTimers();
+    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
     const handleChange = vi.fn();
+
     const ControlledInput = () => {
       const [value, setValue] = useState<Date | undefined>(undefined);
       return (
@@ -74,10 +84,9 @@ describe("InputDate Component", () => {
     render(<ControlledInput />);
     const button = screen.getByRole("button", { name: /DD\/MM\/AAAA/i });
 
-    // Simulate opening the calendar and selecting a date
-    await userEvent.click(button);
-    const day = screen.getByText("15"); // Assuming "15" is a valid day in the calendar
-    await userEvent.click(day);
+    await user.click(button);
+    const day = await screen.findByRole("button", { name: "15" });
+    await user.click(day);
 
     expect(handleChange).toHaveBeenCalledWith(expect.any(Date));
   });

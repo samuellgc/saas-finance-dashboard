@@ -5,16 +5,7 @@ import type {
   CashFlowService,
 } from "@/modules/cash-flow/types/cash-flow.types";
 import { buildCashFlowFilterOptions, buildCashFlowOverview } from "@/modules/cash-flow/utils/cash-flow.utils";
-
-function wait(delayMs: number) {
-  if (delayMs <= 0) {
-    return Promise.resolve();
-  }
-
-  return new Promise(resolve => {
-    setTimeout(resolve, delayMs);
-  });
-}
+import { delay } from "@/shared/utils/async";
 
 export function createCashFlowService({
   transactions = cashFlowTransactionsMock,
@@ -26,7 +17,7 @@ export function createCashFlowService({
       return buildCashFlowFilterOptions(transactions);
     },
     async getOverview(filters: CashFlowFilters) {
-      await wait(delayMs);
+      await delay(delayMs);
 
       return buildCashFlowOverview(transactions, filters, referenceDate);
     },

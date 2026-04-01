@@ -5,22 +5,13 @@ import type {
   DashboardTransaction,
 } from "@/modules/dashboard/types/dashboard.types";
 import { buildDashboardOverview } from "@/modules/dashboard/utils/dashboard.utils";
+import { delay } from "@/shared/utils/async";
 
 type CreateDashboardServiceOptions = {
   transactions?: DashboardTransaction[];
   referenceDate?: Date;
   delayMs?: number;
 };
-
-function wait(delayMs: number) {
-  if (delayMs <= 0) {
-    return Promise.resolve();
-  }
-
-  return new Promise(resolve => {
-    setTimeout(resolve, delayMs);
-  });
-}
 
 export function createDashboardService({
   transactions = dashboardTransactionsMock,
@@ -29,7 +20,7 @@ export function createDashboardService({
 }: CreateDashboardServiceOptions = {}): DashboardService {
   return {
     async getOverview(period: DashboardPeriodKey) {
-      await wait(delayMs);
+      await delay(delayMs);
 
       return buildDashboardOverview(transactions, period, referenceDate);
     },
