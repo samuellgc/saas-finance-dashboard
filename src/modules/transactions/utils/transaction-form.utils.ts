@@ -1,6 +1,8 @@
 import {
+  transactionDeleteSuccessMessage,
   transactionFormSuccessMessage,
   transactionFormTypeOptions,
+  transactionUpdateSuccessMessage,
 } from "@/modules/transactions/constants/transactions.constants";
 import {
   transactionFormCategoriesByTypeMock,
@@ -9,10 +11,12 @@ import {
 import type {
   CreateTransactionPayload,
   CreateTransactionResult,
+  DeleteTransactionResult,
   TransactionFormOptions,
   TransactionFormValues,
   TransactionRecord,
   TransactionType,
+  UpdateTransactionResult,
 } from "@/modules/transactions/types/transactions.types";
 
 export function getTransactionFormDefaultValues(): TransactionFormValues {
@@ -59,9 +63,21 @@ export function mapTransactionFormValuesToPayload(values: TransactionFormValues)
   };
 }
 
-export function buildCreatedTransactionResult(payload: CreateTransactionPayload): CreateTransactionResult {
-  const transaction: TransactionRecord = {
-    id: `transaction-${crypto.randomUUID()}`,
+export function mapTransactionRecordToFormValues(record: TransactionRecord): TransactionFormValues {
+  return {
+    type: record.type,
+    description: record.description,
+    amount: record.amount,
+    occurredAt: new Date(`${record.occurredAt}T12:00:00.000Z`),
+    category: record.category,
+    contact: record.contact,
+    notes: "",
+  };
+}
+
+function mapTransactionPayloadToRecord(id: string, payload: CreateTransactionPayload): TransactionRecord {
+  return {
+    id,
     type: payload.type,
     description: payload.description,
     amount: payload.amount,
@@ -69,11 +85,32 @@ export function buildCreatedTransactionResult(payload: CreateTransactionPayload)
     category: payload.category,
     contact: payload.contact ?? "",
   };
+}
+
+export function buildCreatedTransactionResult(payload: CreateTransactionPayload): CreateTransactionResult {
+  const transaction = mapTransactionPayloadToRecord(`transaction-${crypto.randomUUID()}`, payload);
 
   return {
     id: transaction.id,
     message: transactionFormSuccessMessage,
     transaction,
+  };
+}
+
+export function buildUpdatedTransactionResult(id: string, payload: CreateTransactionPayload): UpdateTransactionResult {
+  const transaction = mapTransactionPayloadToRecord(id, payload);
+
+  return {
+    id,
+    message: transactionUpdateSuccessMessage,
+    transaction,
+  };
+}
+
+export function buildDeletedTransactionResult(id: string): DeleteTransactionResult {
+  return {
+    id,
+    message: transactionDeleteSuccessMessage,
   };
 }
 

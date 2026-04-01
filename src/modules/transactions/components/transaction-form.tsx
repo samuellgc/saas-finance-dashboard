@@ -24,13 +24,18 @@ export function TransactionForm({
   categoryOptions,
   contactOptions,
   isSubmitting = false,
+  isDisabled,
   submitError,
   submitSuccessMessage,
   cancelHref = "/lancamentos",
+  submitLabel = "Salvar lançamento",
+  submittingLabel = "Salvando...",
+  leadingAction,
 }: TransactionFormProps) {
   const descriptionError = form.formState.errors.description?.message;
   const dateError = form.formState.errors.occurredAt?.message;
   const notesError = form.formState.errors.notes?.message;
+  const isFormDisabled = isDisabled ?? isSubmitting;
 
   return (
     <TransactionsSection
@@ -61,7 +66,7 @@ export function TransactionForm({
                     options={typeOptions}
                     placeholder="Selecione o tipo"
                     errorMessage={fieldState.error?.message}
-                    disabled={isSubmitting}
+                    disabled={isFormDisabled}
                     onChange={field.onChange}
                   />
                 )}
@@ -78,7 +83,7 @@ export function TransactionForm({
                     options={categoryOptions}
                     placeholder="Selecione a categoria"
                     errorMessage={fieldState.error?.message}
-                    disabled={isSubmitting}
+                    disabled={isFormDisabled}
                     onChange={field.onChange}
                   />
                 )}
@@ -88,7 +93,7 @@ export function TransactionForm({
                 id="transaction-description"
                 label="Descrição"
                 value={form.watch("description")}
-                disabled={isSubmitting}
+                disabled={isFormDisabled}
                 hasError={Boolean(descriptionError)}
                 helperText={
                   descriptionError
@@ -115,7 +120,7 @@ export function TransactionForm({
                     id="transaction-amount"
                     label="Valor"
                     value={field.value}
-                    disabled={isSubmitting}
+                    disabled={isFormDisabled}
                     hasError={Boolean(fieldState.error?.message)}
                     helperText={
                       fieldState.error?.message
@@ -139,7 +144,7 @@ export function TransactionForm({
                     id="transaction-date"
                     label="Data"
                     value={field.value}
-                    disabled={isSubmitting}
+                    disabled={isFormDisabled}
                     hasError={Boolean(dateError)}
                     helperText={
                       dateError
@@ -167,7 +172,7 @@ export function TransactionForm({
                     options={contactOptions}
                     placeholder="Selecione um contato"
                     errorMessage={fieldState.error?.message}
-                    disabled={isSubmitting}
+                    disabled={isFormDisabled}
                     onChange={field.onChange}
                   />
                 )}
@@ -180,7 +185,7 @@ export function TransactionForm({
                 as="textarea"
                 id="transaction-notes"
                 rows={5}
-                disabled={isSubmitting}
+                disabled={isFormDisabled}
                 value={form.watch("notes")}
                 onChange={event =>
                   form.setValue("notes", event.target.value, {
@@ -222,26 +227,34 @@ export function TransactionForm({
             <Stack
               direction="row"
               gap="3"
-              className="flex-wrap justify-end"
+              className={cn("flex-wrap", leadingAction ? "justify-between" : "justify-end")}
             >
-              <Button
-                asChild
-                type="button"
-                variant="outline"
-                size="fit"
-                className="min-h-10 rounded-xl px-4 py-2"
-              >
-                <Link href={cancelHref}>Cancelar</Link>
-              </Button>
+              {leadingAction ? <Box className="flex items-center">{leadingAction}</Box> : null}
 
-              <Button
-                type="submit"
-                size="fit"
-                disabled={isSubmitting}
-                className="min-h-10 rounded-xl px-4 py-2"
+              <Stack
+                direction="row"
+                gap="3"
+                className="flex-wrap justify-end"
               >
-                {isSubmitting ? "Salvando..." : "Salvar lançamento"}
-              </Button>
+                <Button
+                  asChild
+                  type="button"
+                  variant="outline"
+                  size="fit"
+                  className="min-h-10 rounded-xl px-4 py-2"
+                >
+                  <Link href={cancelHref}>Cancelar</Link>
+                </Button>
+
+                <Button
+                  type="submit"
+                  size="fit"
+                  disabled={isFormDisabled}
+                  className="min-h-10 rounded-xl px-4 py-2"
+                >
+                  {isSubmitting ? submittingLabel : submitLabel}
+                </Button>
+              </Stack>
             </Stack>
           </Stack>
         </Box>

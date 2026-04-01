@@ -145,13 +145,40 @@ export type CreateTransactionResult = {
   transaction: TransactionRecord;
 };
 
-export type TransactionFormService = {
+export type UpdateTransactionResult = {
+  id: string;
+  message: string;
+  transaction: TransactionRecord;
+};
+
+export type DeleteTransactionResult = {
+  id: string;
+  message: string;
+};
+
+export type TransactionFormOptionsSource = {
   getFormOptions: () => TransactionFormOptions;
+};
+
+export type TransactionFormService = TransactionFormOptionsSource & {
   createTransaction: (payload: CreateTransactionPayload) => Promise<CreateTransactionResult>;
 };
 
 export type NewTransactionPageProps = {
   service?: TransactionFormService;
+};
+
+export type TransactionEditorService = TransactionFormOptionsSource & {
+  getTransactionById: (id: string) => Promise<TransactionRecord | null>;
+  updateTransaction: (id: string, payload: CreateTransactionPayload) => Promise<UpdateTransactionResult>;
+  deleteTransaction: (id: string) => Promise<DeleteTransactionResult>;
+};
+
+export type EditTransactionPageProps = {
+  transactionId: string;
+  service?: TransactionEditorService;
+  confirmDelete?: (message: string) => boolean;
+  navigate?: (href: string) => void;
 };
 
 export type TransactionFormSelectFieldProps = {
@@ -172,9 +199,13 @@ export type TransactionFormProps = {
   categoryOptions: TransactionsSelectOption[];
   contactOptions: TransactionsSelectOption[];
   isSubmitting?: boolean;
+  isDisabled?: boolean;
   submitError?: string | null;
   submitSuccessMessage?: string | null;
   cancelHref?: string;
+  submitLabel?: string;
+  submittingLabel?: string;
+  leadingAction?: ReactNode;
 };
 
 export type TransactionsTableProps = {
@@ -202,6 +233,23 @@ export type CreateTransactionsServiceOptions = {
 
 export type CreateTransactionFormServiceOptions = {
   delayMs?: number;
+};
+
+export type CreateTransactionEditorServiceOptions = {
+  transactions?: TransactionRecord[];
+  delayMs?: number;
+};
+
+export type UseTransactionFormControllerOptions = {
+  source: TransactionFormOptionsSource;
+  defaultValues?: TransactionFormValues;
+};
+
+export type UseTransactionFormControllerResult = {
+  form: UseFormReturn<TransactionFormValues>;
+  typeOptions: TransactionsSelectOption[];
+  categoryOptions: TransactionsSelectOption[];
+  contactOptions: TransactionsSelectOption[];
 };
 
 export type UseTransactionsListingOptions = {
@@ -239,4 +287,26 @@ export type UseTransactionFormResult = {
   submitError: string | null;
   submitSuccessMessage: string | null;
   onSubmit: (values: TransactionFormValues) => Promise<void>;
+};
+
+export type UseEditTransactionFormOptions = {
+  transactionId: string;
+  service?: TransactionEditorService;
+  confirmDelete?: (message: string) => boolean;
+  navigate?: (href: string) => void;
+};
+
+export type UseEditTransactionFormResult = {
+  form: UseFormReturn<TransactionFormValues>;
+  typeOptions: TransactionsSelectOption[];
+  categoryOptions: TransactionsSelectOption[];
+  contactOptions: TransactionsSelectOption[];
+  isLoading: boolean;
+  isNotFound: boolean;
+  isSubmitting: boolean;
+  isDeleting: boolean;
+  submitError: string | null;
+  submitSuccessMessage: string | null;
+  onSubmit: (values: TransactionFormValues) => Promise<void>;
+  onDelete: () => Promise<void>;
 };

@@ -105,3 +105,6 @@ export const transactionTypeBadgeCopy: Record<TransactionType, { label: string; 
 };
 
 export const transactionFormSuccessMessage = "Lançamento validado e pronto para persistência.";
+export const transactionUpdateSuccessMessage = "Lançamento atualizado com sucesso.";
+export const transactionDeleteSuccessMessage = "Lançamento excluído com sucesso.";
+export const transactionDeleteConfirmationMessage = "Tem certeza que deseja excluir este lançamento?";
