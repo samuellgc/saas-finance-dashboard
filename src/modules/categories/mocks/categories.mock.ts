@@ -1,0 +1,58 @@
+import type { CategoryRecord } from "@/modules/categories/types/categories.types";
+
+export const categoriesMock: CategoryRecord[] = [
+  {
+    id: "category-01",
+    name: "Receita recorrente",
+    type: "entry",
+    color: "#16a34a",
+    icon: "banknote",
+    status: "active",
+    updatedAt: "2026-04-01T11:00:00.000Z",
+  },
+  {
+    id: "category-02",
+    name: "Projetos",
+    type: "entry",
+    color: "#2563eb",
+    icon: "briefcase",
+    status: "active",
+    updatedAt: "2026-03-29T09:30:00.000Z",
+  },
+  {
+    id: "category-03",
+    name: "Marketing",
+    type: "exit",
+    color: "#dc2626",
+    icon: "megaphone",
+    status: "active",
+    updatedAt: "2026-03-26T15:20:00.000Z",
+  },
+  {
+    id: "category-04",
+    name: "Operação",
+    type: "exit",
+    color: "#f59e0b",
+    icon: "receipt",
+    status: "active",
+    updatedAt: "2026-03-20T18:10:00.000Z",
+  },
+  {
+    id: "category-05",
+    name: "Impostos",
+    type: "exit",
+    color: "#7c3aed",
+    icon: "landmark",
+    status: "inactive",
+    updatedAt: "2026-03-14T08:45:00.000Z",
+  },
+  {
+    id: "category-06",
+    name: "Reembolsos",
+    type: "entry",
+    color: "#0f766e",
+    icon: "wallet",
+    status: "active",
+    updatedAt: "2026-03-11T10:00:00.000Z",
+  },
+];
