@@ -35,9 +35,9 @@ describe("InputDate Component", () => {
   });
 
   it("should display the selected date in the correct format", async () => {
-    vi.useFakeTimers();
+    vi.useFakeTimers({ toFake: ["Date"] });
     vi.setSystemTime(new Date(2025, 8, 1, 0, 0, 0));
-    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
+    const user = userEvent.setup();
 
     const ControlledInput = () => {
       const [value, setValue] = useState<Date | undefined>(undefined);
@@ -55,15 +55,15 @@ describe("InputDate Component", () => {
     const button = screen.getByRole("button", { name: /DD\/MM\/AAAA/i });
 
     await user.click(button);
-    const day = await screen.findByRole("button", { name: "15" });
+    const day = await screen.findByRole("button", { name: /\b15\b/ });
     await user.click(day);
 
     expect(button).toHaveTextContent("15/09/2025");
   });
 
   it("should call onChange when a date is selected", async () => {
-    vi.useFakeTimers();
-    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
+    vi.useFakeTimers({ toFake: ["Date"] });
+    const user = userEvent.setup();
     const handleChange = vi.fn();
 
     const ControlledInput = () => {
@@ -85,7 +85,7 @@ describe("InputDate Component", () => {
     const button = screen.getByRole("button", { name: /DD\/MM\/AAAA/i });
 
     await user.click(button);
-    const day = await screen.findByRole("button", { name: "15" });
+    const day = await screen.findByRole("button", { name: /\b15\b/ });
     await user.click(day);
 
     expect(handleChange).toHaveBeenCalledWith(expect.any(Date));

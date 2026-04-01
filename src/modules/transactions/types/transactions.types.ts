@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import type { UseFormReturn } from "react-hook-form";
 
 export type TransactionType = "entry" | "exit";
 
@@ -112,6 +113,70 @@ export type TransactionTypeBadgeProps = {
   type: TransactionType;
 };
 
+export type TransactionFormValues = {
+  type: TransactionType;
+  description: string;
+  amount?: number;
+  occurredAt: Date;
+  category: string;
+  contact: string;
+  notes: string;
+};
+
+export type CreateTransactionPayload = {
+  type: TransactionType;
+  description: string;
+  amount: number;
+  occurredAt: string;
+  category: string;
+  contact?: string;
+  notes?: string;
+};
+
+export type TransactionFormOptions = {
+  typeOptions: TransactionsSelectOption[];
+  categoriesByType: Record<TransactionType, TransactionsSelectOption[]>;
+  contactOptions: TransactionsSelectOption[];
+};
+
+export type CreateTransactionResult = {
+  id: string;
+  message: string;
+  transaction: TransactionRecord;
+};
+
+export type TransactionFormService = {
+  getFormOptions: () => TransactionFormOptions;
+  createTransaction: (payload: CreateTransactionPayload) => Promise<CreateTransactionResult>;
+};
+
+export type NewTransactionPageProps = {
+  service?: TransactionFormService;
+};
+
+export type TransactionFormSelectFieldProps = {
+  id: string;
+  label: string;
+  value: string;
+  options: TransactionsSelectOption[];
+  placeholder: string;
+  errorMessage?: string;
+  disabled?: boolean;
+  onChange: (value: string) => void;
+};
+
+export type TransactionFormProps = {
+  form: UseFormReturn<TransactionFormValues>;
+  onSubmit: (values: TransactionFormValues) => Promise<void>;
+  typeOptions: TransactionsSelectOption[];
+  categoryOptions: TransactionsSelectOption[];
+  contactOptions: TransactionsSelectOption[];
+  isSubmitting?: boolean;
+  submitError?: string | null;
+  submitSuccessMessage?: string | null;
+  cancelHref?: string;
+};
+
 export type TransactionsTableProps = {
   items: TransactionRecord[];
   isLoading?: boolean;
@@ -135,6 +200,10 @@ export type CreateTransactionsServiceOptions = {
   delayMs?: number;
 };
 
+export type CreateTransactionFormServiceOptions = {
+  delayMs?: number;
+};
+
 export type UseTransactionsListingOptions = {
   initialFilters?: TransactionsFilters;
   initialPage?: number;
@@ -155,4 +224,19 @@ export type UseTransactionsListingResult = {
   setCategoryFilter: (category: string) => void;
   setContactFilter: (contact: string) => void;
   setQueryFilter: (query: string) => void;
+};
+
+export type UseTransactionFormOptions = {
+  service?: TransactionFormService;
+};
+
+export type UseTransactionFormResult = {
+  form: UseFormReturn<TransactionFormValues>;
+  typeOptions: TransactionsSelectOption[];
+  categoryOptions: TransactionsSelectOption[];
+  contactOptions: TransactionsSelectOption[];
+  isSubmitting: boolean;
+  submitError: string | null;
+  submitSuccessMessage: string | null;
+  onSubmit: (values: TransactionFormValues) => Promise<void>;
 };

@@ -47,6 +47,11 @@ export const transactionsTypeOptions: TransactionsSelectOption[] = [
   { value: "exit", label: "Saídas" },
 ];
 
+export const transactionFormTypeOptions: TransactionsSelectOption[] = [
+  { value: "entry", label: "Entrada" },
+  { value: "exit", label: "Saída" },
+];
+
 export const transactionsPeriodDayMap: Record<TransactionsPeriodKey, number> = {
   "30d": 29,
   "90d": 89,
@@ -98,3 +103,5 @@ export const transactionTypeBadgeCopy: Record<TransactionType, { label: string; 
     className: "border-destructive/20 bg-destructive/10 text-destructive",
   },
 };
+
+export const transactionFormSuccessMessage = "Lançamento validado e pronto para persistência.";
