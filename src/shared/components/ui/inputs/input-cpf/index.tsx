@@ -31,7 +31,7 @@ type InputCpfProps = Omit<InputWrapperProps, "onChange" | "value"> & {
  * @param helperText - Texto auxiliar exibido abaixo do campo.
  * @param props - Demais props herdadas de `InputWrapperProps`, exceto `onChange` e `value`.
  */
-export function InputCpf({ onChange, value = "", label, helperText, hasError, ...props }: InputCpfProps) {
+export function InputCpf({ onChange, value = "", label, helperText, hasError, htmlFor, ...props }: InputCpfProps) {
   const handleFormat = useCallback((value: string) => {
     return formatCPF(value);
   }, []);
@@ -49,6 +49,7 @@ export function InputCpf({ onChange, value = "", label, helperText, hasError, ..
       helperText={helperText}
       label={label}
       hasError={hasError}
+      htmlFor={htmlFor}
       {...props}
     >
       <Input

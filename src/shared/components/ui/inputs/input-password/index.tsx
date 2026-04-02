@@ -49,6 +49,7 @@ export function InputPassword({
   label,
   helperText,
   hasError,
+  htmlFor,
   ...props
 }: InputPasswordProps) {
   const [visible, setVisible] = useState(false);
@@ -77,6 +78,7 @@ export function InputPassword({
         helperText={helperText}
         label={label}
         hasError={hasError}
+        htmlFor={htmlFor}
         {...props}
       >
         <Input

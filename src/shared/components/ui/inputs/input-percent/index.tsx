@@ -33,7 +33,7 @@ function parsePercent(input: string): number | undefined {
   return Math.max(0, num); // por quê: não permitir negativos
 }
 
-export function InputPercent({ onChange, value, label, helperText, ...props }: InputPercentProps) {
+export function InputPercent({ onChange, value, label, helperText, hasError, htmlFor, ...props }: InputPercentProps) {
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const parsed = parsePercent(e.target.value);
@@ -61,6 +61,8 @@ export function InputPercent({ onChange, value, label, helperText, ...props }: I
     <InputWrapper
       helperText={helperText}
       label={label}
+      hasError={hasError}
+      htmlFor={htmlFor}
       {...props}
     >
       <Input

@@ -30,6 +30,7 @@ export function InputWrapper({
   children,
   className,
   hasError = false,
+  htmlFor,
   disabled = false,
   ...props
 }: InputWrapperProps) {
@@ -38,7 +39,7 @@ export function InputWrapper({
       className={cn("w-full", className)}
       gap="2"
     >
-      {label && <Label htmlFor={props.id}>{label}</Label>}
+      {label && <Label htmlFor={htmlFor ?? props.id}>{label}</Label>}
 
       <Stack
         className={cn(

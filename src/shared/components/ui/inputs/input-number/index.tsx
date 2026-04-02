@@ -10,7 +10,7 @@ type InputNumberProps = Omit<InputWrapperProps, "onChange" | "value"> & {
   onChange?: (value: number | undefined) => void;
 };
 
-export function InputNumber({ onChange, value, label, helperText, ...props }: InputNumberProps) {
+export function InputNumber({ onChange, value, label, helperText, hasError, htmlFor, ...props }: InputNumberProps) {
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const onlyDigits = e.target.value.replace(/\D/g, ""); // mantém só números
@@ -24,6 +24,8 @@ export function InputNumber({ onChange, value, label, helperText, ...props }: In
     <InputWrapper
       helperText={helperText}
       label={label}
+      hasError={hasError}
+      htmlFor={htmlFor}
       {...props}
     >
       <Input

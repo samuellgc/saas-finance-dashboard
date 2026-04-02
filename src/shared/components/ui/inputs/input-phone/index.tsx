@@ -31,7 +31,7 @@ type InputPhoneProps = Omit<InputWrapperProps, "onChange" | "value"> & {
  * @param helperText - Texto auxiliar exibido abaixo do campo.
  * @param props - Demais props herdadas de `InputWrapperProps`, exceto `onChange` e `value`.
  */
-export function InputPhone({ onChange, value = "", label, helperText, ...props }: InputPhoneProps) {
+export function InputPhone({ onChange, value = "", label, helperText, hasError, htmlFor, ...props }: InputPhoneProps) {
   const handleFormat = useCallback((value: string) => {
     return formatPhone(value);
   }, []);
@@ -48,6 +48,8 @@ export function InputPhone({ onChange, value = "", label, helperText, ...props }
     <InputWrapper
       helperText={helperText}
       label={label}
+      hasError={hasError}
+      htmlFor={htmlFor}
       {...props}
     >
       <Input

@@ -12,13 +12,15 @@ import type { InputWrapperProps } from "@/shared/types/inputs";
  * @param helperText - Texto auxiliar exibido abaixo do campo.
  * @param props - Demais props herdadas de `InputWrapperProps`.
  */
-export function InputText({ label, helperText, rightIcon, leftIcon, ...props }: InputWrapperProps) {
+export function InputText({ label, helperText, rightIcon, leftIcon, hasError, htmlFor, ...props }: InputWrapperProps) {
   return (
     <InputWrapper
       helperText={helperText}
       label={label}
       rightIcon={rightIcon}
       leftIcon={leftIcon}
+      hasError={hasError}
+      htmlFor={htmlFor}
       {...props}
     >
       <Input

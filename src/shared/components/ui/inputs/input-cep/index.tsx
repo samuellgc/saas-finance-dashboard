@@ -31,7 +31,7 @@ type InputCepProps = Omit<InputWrapperProps, "onChange" | "value"> & {
  * @param helperText - Texto auxiliar exibido abaixo do campo.
  * @param props - Demais props herdadas de `InputWrapperProps`, exceto `onChange` e `value`.
  */
-export function InputCep({ onChange, value = "", label, helperText, ...props }: InputCepProps) {
+export function InputCep({ onChange, value = "", label, helperText, hasError, htmlFor, ...props }: InputCepProps) {
   const handleFormat = useCallback((value: string) => {
     return formatCep(value);
   }, []);
@@ -48,6 +48,8 @@ export function InputCep({ onChange, value = "", label, helperText, ...props }: 
     <InputWrapper
       helperText={helperText}
       label={label}
+      hasError={hasError}
+      htmlFor={htmlFor}
       {...props}
     >
       <Input

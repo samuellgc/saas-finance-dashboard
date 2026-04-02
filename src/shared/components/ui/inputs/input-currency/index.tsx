@@ -40,7 +40,7 @@ function parseCurrency(input: string): number | undefined {
   return num;
 }
 
-export function InputCurrency({ onChange, value, label, helperText, ...props }: InputCurrencyProps) {
+export function InputCurrency({ onChange, value, label, helperText, hasError, htmlFor, ...props }: InputCurrencyProps) {
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       // Mantém apenas números
@@ -72,6 +72,8 @@ export function InputCurrency({ onChange, value, label, helperText, ...props }: 
     <InputWrapper
       helperText={helperText}
       label={label}
+      hasError={hasError}
+      htmlFor={htmlFor}
       {...props}
     >
       <Input

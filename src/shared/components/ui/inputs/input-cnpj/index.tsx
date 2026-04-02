@@ -29,7 +29,7 @@ type InputCnpjProps = Omit<InputWrapperProps, "onChange" | "value"> & {
  * @param onChange - Função chamada ao alterar o valor. Recebe o evento com o CNPJ formatado.
  * @param props - Demais propriedades do elemento `<input>`.
  */
-export function InputCnpj({ onChange, value, helperText, label, ...props }: InputCnpjProps) {
+export function InputCnpj({ onChange, value, helperText, label, hasError, htmlFor, ...props }: InputCnpjProps) {
   const handleFormat = useCallback((value: string) => {
     return formatCnpj(value);
   }, []);
@@ -47,6 +47,8 @@ export function InputCnpj({ onChange, value, helperText, label, ...props }: Inpu
     <InputWrapper
       helperText={helperText}
       label={label}
+      hasError={hasError}
+      htmlFor={htmlFor}
       {...props}
     >
       <Input

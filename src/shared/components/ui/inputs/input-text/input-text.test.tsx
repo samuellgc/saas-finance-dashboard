@@ -58,4 +58,20 @@ describe("InputText Component", () => {
     await userEvent.type(input, "Teste");
     expect(handleChange).toHaveBeenCalled();
   });
+
+  it("should not forward hasError to the native input", () => {
+    const consoleErrorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
+    render(
+      <InputText
+        label="Texto"
+        hasError
+      />
+    );
+
+    expect(screen.getByRole("textbox")).not.toHaveAttribute("hasError");
+    expect(consoleErrorSpy).not.toHaveBeenCalled();
+
+    consoleErrorSpy.mockRestore();
+  });
 });
